@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var eyesAreOpened: bool = false
+var eyesAreOpened: bool = true
 var idOfAudio: int
 
 @export var OpenEye: Sprite2D
@@ -9,13 +9,20 @@ var idOfAudio: int
 
 @export var OpenMouth: Sprite2D
 @export var ClosedMouth: Sprite2D
-@export var talkThresholdPercentage: float = 40
+@export var talkThresholdPercentage: float = 44
 
 var characterTalking: bool = false
 func timeOut() -> void:
 	eyesAreOpened = not eyesAreOpened
+	var timer: Timer = $Timer
+	# invert this because variable toggle eyeOpening first
+	if not eyesAreOpened:
+		timer.wait_time = 3
+	else:
+		timer.wait_time = .1
 
 func _ready() -> void:
+	get_viewport().transparent_bg = true
 	dealWithEye()
 	dealWithMouth()
 	idOfAudio = AudioServer.get_bus_index("mic")
