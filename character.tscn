@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnsjc35ck6lqm"]
+
+[ext_resource type="Texture2D" uid="uid://bja1mihkuipwk" path="res://assets/gabbeeto empty.svg" id="1_glpr6"]
+[ext_resource type="Texture2D" uid="uid://bmwt1vo31yx64" path="res://assets/eyeOpened.svg" id="2_wa5vi"]
+[ext_resource type="Texture2D" uid="uid://vb5tgmakp48h" path="res://assets/mouthOpened.svg" id="3_wfnr8"]
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_wa5vi"]
+
+[node name="character" type="Node2D"]
+
+[node name="body" type="Sprite2D" parent="."]
+texture = ExtResource("1_glpr6")
+
+[node name="face" type="Node2D" parent="body"]
+position = Vector2(3.155, -3.185)
+scale = Vector2(0.185, 0.185)
+
+[node name="eyes" type="Sprite2D" parent="body/face"]
+texture = ExtResource("2_wa5vi")
+
+[node name="mouth" type="Sprite2D" parent="body/face"]
+texture = ExtResource("3_wfnr8")
+
+[node name="audio" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamMicrophone_wa5vi")
+bus = &"mic"
