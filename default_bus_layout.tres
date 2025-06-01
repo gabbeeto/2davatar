@@ -1,7 +1,10 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://d0w4iy3qv11el"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://d0w4iy3qv11el"]
 
 [sub_resource type="AudioEffectCapture" id="AudioEffectCapture_j3pel"]
 resource_name = "Capture"
+
+[sub_resource type="AudioEffectRecord" id="AudioEffectRecord_j3pel"]
+resource_name = "Record"
 
 [resource]
 bus/1/name = &"mic"
@@ -12,3 +15,5 @@ bus/1/volume_db = 0.0
 bus/1/send = &"Master"
 bus/1/effect/0/effect = SubResource("AudioEffectCapture_j3pel")
 bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource("AudioEffectRecord_j3pel")
+bus/1/effect/1/enabled = true

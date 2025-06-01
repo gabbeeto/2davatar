@@ -1,12 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnsjc35ck6lqm"]
+[gd_scene load_steps=8 format=3 uid="uid://dnsjc35ck6lqm"]
 
 [ext_resource type="Texture2D" uid="uid://bja1mihkuipwk" path="res://assets/gabbeeto empty.svg" id="1_glpr6"]
+[ext_resource type="Script" uid="uid://bo4fb32iwjutg" path="res://character.gd" id="1_wfnr8"]
 [ext_resource type="Texture2D" uid="uid://bmwt1vo31yx64" path="res://assets/eyeOpened.svg" id="2_wa5vi"]
 [ext_resource type="Texture2D" uid="uid://vb5tgmakp48h" path="res://assets/mouthOpened.svg" id="3_wfnr8"]
+[ext_resource type="Texture2D" uid="uid://bclfdn1k3ikuv" path="res://assets/mouthClosed.svg" id="5_0qfo5"]
+[ext_resource type="Texture2D" uid="uid://b5pr4by0uuoit" path="res://assets/eyesClosed.svg" id="6_yxww1"]
 
 [sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_wa5vi"]
 
-[node name="character" type="Node2D"]
+[node name="character" type="Node2D" node_paths=PackedStringArray("OpenEye", "ClosedEye", "OpenMouth", "ClosedMouth")]
+script = ExtResource("1_wfnr8")
+OpenEye = NodePath("body/face/eyes")
+ClosedEye = NodePath("body/face/eyesC")
+OpenMouth = NodePath("body/face/mouth")
+ClosedMouth = NodePath("body/face/mouthC")
 
 [node name="body" type="Sprite2D" parent="."]
 texture = ExtResource("1_glpr6")
@@ -21,6 +29,20 @@ texture = ExtResource("2_wa5vi")
 [node name="mouth" type="Sprite2D" parent="body/face"]
 texture = ExtResource("3_wfnr8")
 
+[node name="mouthC" type="Sprite2D" parent="body/face"]
+texture = ExtResource("5_0qfo5")
+
+[node name="eyesC" type="Sprite2D" parent="body/face"]
+texture = ExtResource("6_yxww1")
+
 [node name="audio" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamMicrophone_wa5vi")
+autoplay = true
 bus = &"mic"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="timeOut"]
