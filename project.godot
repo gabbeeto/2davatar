@@ -12,7 +12,10 @@ config_version=5
 
 config/name="2dAvatar"
 run/main_scene="uid://dnsjc35ck6lqm"
+run/disable_stdout=true
+run/disable_stderr=true
 config/features=PackedStringArray("4.4", "GL Compatibility")
+run/low_processor_mode=true
 
 [audio]
 
@@ -27,10 +30,19 @@ gdscript/warnings/unsafe_method_access=1
 
 [display]
 
+window/size/viewport_width=200
+window/size/viewport_height=315
+window/size/mode=1
+window/size/initial_position_type=0
+window/size/initial_position=Vector2i(1150, 520)
+window/size/resizable=false
 window/size/borderless=true
+window/size/always_on_top=true
 window/size/transparent=true
 window/size/no_focus=true
+window/stretch/mode="viewport"
 window/per_pixel_transparency/allowed=true
+window/vsync/vsync_mode=0
 
 [rendering]
 
